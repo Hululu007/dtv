@@ -81,10 +81,10 @@ import { motion } from 'motion-v';
 import { RecycleScroller } from 'vue-virtual-scroller';
 import { useResizeObserver } from '@vueuse/core';
 import type { CategorySelectedEvent } from '../../platforms/common/categoryTypes'
-import { useHuyaLiveRooms } from './composables/useHuyaLiveRooms'
-import { useDouyinLiveRooms } from './composables/useDouyinLiveRooms'
-import { useBilibiliLiveRooms } from './composables/useBilibiliLiveRooms'
-import { useDouyuLiveRooms } from './composables/useDouyuLiveRooms'
+import { useHuyaLiveRooms } from './composables/useHuyaLiveRooms.ts'
+import { useDouyinLiveRooms } from './composables/useDouyinLiveRooms.ts'
+import { useBilibiliLiveRooms } from './composables/useBilibiliLiveRooms.ts'
+import { useDouyuLiveRooms } from './composables/useDouyuLiveRooms.ts'
 import SmoothImage from '../Common/SmoothImage.vue'
 import LoadingDots from '../Common/LoadingDots.vue'
 

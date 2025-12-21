@@ -2,10 +2,22 @@ use deno_core::{FastString, JsRuntime, RuntimeOptions};
 use md5::{Digest, Md5};
 use rand::Rng;
 use std::collections::HashMap;
+#[cfg(target_os = "linux")]
+use std::sync::Once;
 use url::Url;
 
 // Load sign.js content at compile time
 const SIGN_JS_CONTENT: &str = include_str!("./sign.js");
+
+#[cfg(target_os = "linux")]
+static JS_RUNTIME_INIT: Once = Once::new();
+
+fn ensure_js_runtime_platform_initialized() {
+    #[cfg(target_os = "linux")]
+    JS_RUNTIME_INIT.call_once(|| {
+        JsRuntime::init_platform(None);
+    });
+}
 
 pub async fn generate_signature(
     wss_url: &str,
@@ -49,6 +61,7 @@ pub async fn generate_signature(
     let md5_param = format!("{:x}", digest_bytes);
     println!("[Rust] MD5 param for signature: {}", md5_param);
 
+    ensure_js_runtime_platform_initialized();
     let mut runtime = JsRuntime::new(RuntimeOptions::default());
 
     let bootstrap_script = r#"

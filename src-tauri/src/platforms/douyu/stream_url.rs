@@ -8,6 +8,8 @@ use reqwest::{
 };
 use serde::Deserialize;
 use serde_json::Value;
+#[cfg(target_os = "linux")]
+use std::sync::Once;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 #[derive(Deserialize, Debug)]
@@ -50,6 +52,16 @@ struct DouYu {
 }
 
 const DEFAULT_DOUYU_CDN: &str = "ws-h5";
+
+#[cfg(target_os = "linux")]
+static JS_RUNTIME_INIT: Once = Once::new();
+
+fn ensure_js_runtime_platform_initialized() {
+    #[cfg(target_os = "linux")]
+    JS_RUNTIME_INIT.call_once(|| {
+        JsRuntime::init_platform(None);
+    });
+}
 
 fn normalize_douyu_cdn(input: Option<&str>) -> &'static str {
     match input
@@ -113,6 +125,7 @@ impl DouYu {
         did: &str,
         t10: &str,
     ) -> Result<String, Box<dyn std::error::Error>> {
+        ensure_js_runtime_platform_initialized();
         let mut runtime = JsRuntime::new(RuntimeOptions::default());
 
         // 执行第一个函数
