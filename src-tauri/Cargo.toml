@@ -65,6 +65,7 @@ window-vibrancy = "0.7.1"
  tungstenite = { version = "0.21", features = ["native-tls"] }
  brotlic = "0.8"
  cookie = "0.18"
+ html-escape = "0.2"
 
  [profile.release]
  panic = "abort"
