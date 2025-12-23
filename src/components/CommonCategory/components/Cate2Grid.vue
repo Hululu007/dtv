@@ -195,6 +195,22 @@ const handleToggleInternalExpand = () => {
   will-change: height;
 }
 
+.cate2-scroll-wrapper {
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.cate2-scroll-wrapper.allow-scroll {
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.cate2-scroll-wrapper.allow-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 .cate2-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -249,8 +265,9 @@ const handleToggleInternalExpand = () => {
 }
 
 :root[data-theme="light"] .cate2-card {
-  color: #546156;
-  background: rgba(236, 240, 237, 0.92);
+  color: #6c7270;
+  background: rgba(244, 245, 246, 0.9);
+  font-weight: 500;
   border: 1px solid transparent;
 }
 
@@ -258,6 +275,7 @@ const handleToggleInternalExpand = () => {
   color: #1f2937;
   background: rgba(255, 255, 255, 1);
   border: 1px solid transparent;
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.12);
 }
 
 :root[data-theme="dark"] .cate2-card.active {
@@ -278,7 +296,7 @@ const handleToggleInternalExpand = () => {
   color: var(--secondary-text);
   cursor: pointer;
   border-radius: 100px;
-  background: var(--secondary-bg);
+  background: rgba(244, 245, 246, 0.9);
   border: none;
   transition: all 0.2s ease;
   z-index: 5;
@@ -286,9 +304,19 @@ const handleToggleInternalExpand = () => {
 }
 
 .expand-button:hover {
-  background: var(--tertiary-bg);
-  color: var(--primary-text);
+  background: rgba(244, 245, 246, 0.98);
+  color: #1f2937;
   border-color: var(--accent-color);
+}
+
+:root[data-theme="dark"] .expand-button {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--secondary-text);
+}
+
+:root[data-theme="dark"] .expand-button:hover {
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--primary-text);
 }
 
 .expand-icon {

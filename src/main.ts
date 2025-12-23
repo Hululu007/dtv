@@ -5,7 +5,6 @@ import router from './router';
 import { useFollowStore } from './store/followStore'; 
 import { useThemeStore } from './stores/theme';
 import { check } from '@tauri-apps/plugin-updater';
-import { relaunch } from '@tauri-apps/api/process';
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css';
 
 const app = createApp(App);
@@ -38,7 +37,6 @@ const maybeCheckForUpdates = async () => {
       const shouldUpdate = window.confirm(`发现新版本 ${update.version}，是否立即更新？${notes}`);
       if (!shouldUpdate) return;
       await update.downloadAndInstall();
-      await relaunch();
     }
   } catch (error) {
     console.error('[main.ts] Auto update check failed:', error);

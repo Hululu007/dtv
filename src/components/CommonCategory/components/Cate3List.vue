@@ -103,8 +103,9 @@ const selectAll = () => {
 }
 
 :root[data-theme="light"] .cate3-item {
-  color: #7b877f;
-  background: rgba(236, 240, 237, 0.92);
+  color: #6c7270;
+  background: rgba(244, 245, 246, 0.9);
+  font-weight: 500;
   border: 1px solid transparent;
 }
 
@@ -112,5 +113,6 @@ const selectAll = () => {
   color: #1f2937;
   background: rgba(255, 255, 255, 1);
   border: 1px solid transparent;
+  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.12);
 }
 </style>
